@@ -104,10 +104,10 @@ print(f"\nMiniloop Average Score: {miniloop_avg_score:.2f}/200")
 print(f"While Loop Average Score: {while_loop_avg_score:.2f}/200")
 
 if miniloop_avg_score > while_loop_avg_score:
-    print("\n✅ Miniloop performed better overall.")
+    print("\nMiniloop performed better overall.")
 elif miniloop_avg_score < while_loop_avg_score:
-    print("\n✅ While Loop performed better overall.")
+    print("\nWhile Loop performed better overall.")
 else:
-    print("\n🤝 Both performed equally well.")
+    print("\nBoth performed equally well.")
 
 print("=====================================")
