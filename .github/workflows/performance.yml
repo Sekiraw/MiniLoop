@@ -23,6 +23,7 @@ jobs:
 
       - name: Build and install miniloop
         run: |
+          pip install setuptools
           python setup.py build
           python setup.py install
 
