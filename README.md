@@ -4,37 +4,37 @@ MiniLoop is a lightweight Python game loop library designed to provide a simple 
 
 ---
 
-## Why MiniLoop? 🚀
+## Why MiniLoop?
 When developing real-time applications like games and simulations, having an efficient and stable game loop is crucial. MiniLoop is designed to provide a precise, high-performance loop with built-in timing management, making it a superior alternative to a basic while loop.
 
-- ✅ <strong>More Accurate Frame Timing</strong>
+- <strong>More Accurate Frame Timing</strong>
     - MiniLoop ensures consistent frame pacing by using a high-resolution timer. Unlike a simple while loop that can suffer from frame drift and timing inconsistencies, MiniLoop dynamically adjusts to keep the frame rate steady.
 
-- ✅ <strong>Improved CPU Efficiency</strong>
+- <strong>Improved CPU Efficiency</strong>
     - A basic while loop can waste CPU cycles when waiting for the next frame, leading to higher power consumption and unnecessary CPU usage. MiniLoop intelligently sleeps between frames, reducing resource usage while maintaining target FPS.
 
-- ✅ <strong>Higher FPS Stability</strong>
+- <strong>Higher FPS Stability</strong>
 From our benchmarks:
 
-MiniLoop achieved <u>60.69 FPS</u> 🔥
+MiniLoop achieved <u>60.69 FPS</u>
 While loop only reached <u>58.89 FPS</u> 
 This means <strong>MiniLoop maintains a smoother experience</strong>, preventing stuttering and inconsistencies.
-- ✅ <strong>Optimized Python Function Calls</strong>
+- <strong>Optimized Python Function Calls</strong>
     - MiniLoop caches function pointers before the loop starts, minimizing overhead when calling update() and render().
 A plain while loop calls Python functions inefficiently, slowing down performance.
-- ✅ <strong>Cross-Platform & Easy to Use</strong>
+- <strong>Cross-Platform & Easy to Use</strong>
     - Works on Windows, Linux, and macOS with precise timing control.
 Simple API: just set your update() and render() functions, and MiniLoop takes care of the rest.
-- ✅ <strong>Built-In Stop Handling</strong>
+- <strong>Built-In Stop Handling</strong>
     - MiniLoop includes a clean stop mechanism that allows safe termination from Python, unlike a while loop that may require manual handling with try/except.
 
-💡 TL;DR
-- ✅ More stable FPS
-- ✅ Lower CPU usage
-- ✅ Better timing accuracy
-- ✅ Easier to use
+TL;DR
+- More stable FPS
+- Lower CPU usage
+- Better timing accuracy
+- Easier to use
 
-If you're working on a game, simulation, or any real-time application, MiniLoop is the better choice. Try it out and experience a smoother, more efficient loop! 🚀🔥
+If you're working on a game, simulation, or any real-time application, MiniLoop is the better choice. Try it out and experience a smoother, more efficient loop!
 
 ## Features
 
@@ -85,6 +85,49 @@ Update: 0.01665 sec
 Rendering frame
 ...
 ```
+
+# Performance Benchmark: Miniloop vs While Loop
+
+This benchmark compares the performance of **Miniloop** and a standard **While Loop** at different frame rates (FPS) and durations. The test evaluates both accuracy (how closely the achieved FPS matches the target) and stability (frame-time consistency).
+
+## Test Configuration
+- **Durations Tested:** 3s, 5s, 10s  
+- **FPS Targets:** 30, 60, 120  
+- **Metrics Evaluated:**  
+  - **Achieved FPS:** The actual FPS measured during execution.  
+  - **Score (0-200):** A combination of accuracy and stability.  
+
+## Results
+
+### 3-Second Tests
+| FPS Target | Miniloop Achieved FPS | Miniloop Score | While Loop Achieved FPS | While Loop Score |
+|------------|----------------------|---------------|----------------------|---------------|
+| 30 FPS     | 30.15                 | 199.54        | 29.73                 | 199.20        |
+| 60 FPS     | 60.95                 | 197.16        | 58.81                 | 196.42        |
+| 120 FPS    | 117.45                | 192.34        | 116.27                | 188.80        |
+
+### 5-Second Tests
+| FPS Target | Miniloop Achieved FPS | Miniloop Score | While Loop Achieved FPS | While Loop Score |
+|------------|----------------------|---------------|----------------------|---------------|
+| 30 FPS     | 30.00                 | 199.99        | 29.72                 | 199.17        |
+| 60 FPS     | 60.52                 | 198.43        | 58.80                 | 196.39        |
+| 120 FPS    | 117.08                | 191.25        | 116.90                | 190.71        |
+
+### 10-Second Tests
+| FPS Target | Miniloop Achieved FPS | Miniloop Score | While Loop Achieved FPS | While Loop Score |
+|------------|----------------------|---------------|----------------------|---------------|
+| 30 FPS     | 29.99                 | 199.97        | 29.75                 | 199.24        |
+| 60 FPS     | 60.19                 | 199.42        | 58.80                 | 196.40        |
+| 120 FPS    | 116.74                | 190.22        | 116.73                | 190.18        |
+
+---
+
+## Final Performance Summary
+- **Miniloop Average Score:** **196.48 / 200**  
+- **While Loop Average Score:** **195.17 / 200**  
+
+## Conclusion
+Miniloop outperformed the While Loop overall, achieving a slightly higher **accuracy and stability** in frame rates, particularly at higher FPS targets. While both methods performed well, Miniloop provided better consistency, especially for longer durations.
 
 ## How It Works
 MiniLoop miniloop runs a continuous loop, calling the user-defined update and render functions at a target frame rate. The update function receives delta_time, which represents the time elapsed since the last frame, allowing smooth time-based updates.

@@ -14,7 +14,7 @@ module = Extension(
 
 setup(
     name="miniloop",
-    version="1.0.0",
+    version="1.0.1",
     description="MiniLoop is a lightweight Python game loop library designed to provide a simple and efficient way to manage update and render cycles in real-time applications.",
     long_description=long_description,
     long_description_content_type="text/markdown",

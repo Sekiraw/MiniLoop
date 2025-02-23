@@ -1,0 +1,45 @@
+name: Performance Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install miniloop
+
+      - name: Run performance test
+        run: python tests/meter.py | tee output.log
+
+      - name: Check results and fail if necessary
+        run: |
+          miniloop_score=$(grep 'Miniloop Average Score' output.log | awk '{print $4}')
+          while_loop_score=$(grep 'While Loop Average Score' output.log | awk '{print $5}')
+          
+          echo "Miniloop Score: $miniloop_score"
+          echo "While Loop Score: $while_loop_score"
+          
+          if (( $(echo "$miniloop_score < $while_loop_score" | bc -l) )); then
+            echo "❌ While loop outperformed Miniloop. Failing build."
+            exit 1
+          else
+            echo "✅ Miniloop performed better or equally well. Passing build."
+          fi
