@@ -8,7 +8,8 @@ with open("README.md", "r") as fh:
 
 module = Extension(
     "miniloop",
-    sources=["main.c"]
+    sources=["main.c"],
+    libraries=["winmm"]
 )
 
 setup(
