@@ -8,13 +8,12 @@ with open("README.md", "r") as fh:
 
 module = Extension(
     "miniloop",
-    sources=["main.c"],
-    libraries=["winmm"]
+    sources=["main.c"]
 )
 
 setup(
     name="miniloop",
-    version="1.0.1",
+    version="1.0.2",
     description="MiniLoop is a lightweight Python game loop library designed to provide a simple and efficient way to manage update and render cycles in real-time applications.",
     long_description=long_description,
     long_description_content_type="text/markdown",

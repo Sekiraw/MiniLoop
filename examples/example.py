@@ -2,26 +2,26 @@
 # Author: Qiyaya
 
 import miniloop
-import threading
 
+# Example update function
 def update(delta_time):
-    print(f"Update: {delta_time:.5f} sec")
+    print(f"Updating game logic... Delta time: {delta_time:.2f}")
 
+# Example render function
 def render():
-    print("Rendering frame")
+    print("Rendering frame...")
 
-# Function to listen for user input and stop the loop
-def wait_for_exit():
-    input("Press Enter to stop...\n")
-    miniloop.stop()
-
+# Set callbacks
 miniloop.set_update(update)
 miniloop.set_render(render)
+
+# Set target FPS
 miniloop.set_fps(60)
 
-# Start a separate thread to listen for user input
-input_thread = threading.Thread(target=wait_for_exit)
-input_thread.start()
+try:
+    print("Starting game loop!")
+    miniloop.start()
+except KeyboardInterrupt:
+    print("Stopping game loop...")
+    miniloop.stop()
 
-# Start the game loop
-miniloop.start()
